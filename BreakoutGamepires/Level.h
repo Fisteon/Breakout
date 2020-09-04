@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <map>
+#include <vector>
 
 #include "Brick.h"
 
@@ -12,7 +12,7 @@ public:
 
 	Level();
 
-	Level(int _rowCount, int _columnCount, int _rowSpacing, int _columnSpacing, std::string _backgroundTexture,
+	Level(int _rowCount, int _columnCount, int _rowSpacing, int _columnSpacing, const char* _backgroundTexture,
 		std::map<const char*, Brick> _bricks) :
 		rowCount(_rowCount),
 		columnCount(_columnCount),
@@ -26,7 +26,8 @@ public:
 	int columnCount;
 	int rowSpacing;
 	int columnSpacing;
-	std::string backgroundTexture;
+	const char* backgroundTexture;
 	std::map<const char*, Brick> brickTypes;
+	std::vector<std::string> levelLayout;
 };
 

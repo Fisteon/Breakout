@@ -3,6 +3,7 @@
 
 class GameManager {
 	public:
-		GameManager(int width, int height);
+		GameManager();
 	private:
+		int sidebarWidth = 75;
 };

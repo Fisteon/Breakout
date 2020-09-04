@@ -8,7 +8,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(610, 600), "SFML works!");
 	sf::RectangleShape blocks[30];
 
-	GameManager g(10, 10);
+	GameManager g;
 
 	Ball b;
 	b.direction.x = 0.1f;

@@ -1,16 +1,20 @@
 #pragma once
 
 #include <string>
+
+#include "Level.h"
 #include "tinyxml2.h"
 
 using namespace tinyxml2;
 
 class LevelGenerator {
-public:
-	LevelGenerator(int levelNumber = -1);
+	public:
+		LevelGenerator();
+		Level parseLevelInfo(int levelNumber = -1);
+		std::vector<std::string> parseLevelLayout(std::string x);
 
-	const std::string LEVEL = "Level";
-	const std::string BRICK_TYPES = "BrickTypes";
-	const std::string BRICK_TYPE = "BrickType";
-	const std::string BRICKS = "Bricks";
+		const std::string LEVEL = "Level";
+		const std::string BRICK_TYPES = "BrickTypes";
+		const std::string BRICK_TYPE = "BrickType";
+		const std::string BRICKS = "Bricks";
 };
