@@ -1,24 +1,22 @@
 #pragma once
 
 #include <string>
+#include <SFML\Main.hpp>
+#include <SFML\Graphics.hpp>
 
-class Brick {
+class Brick : public sf::RectangleShape{
 public:
-	const char* texture;
+	/*const char**/ std::string texture;
 	int hp;
 	int breakScore;
-	const char* hitSound;
-	const char* breakSound;
+	/*const char**/ std::string hitSound;
+	/*const char**/ std::string breakSound;
 
 	Brick();
-
-	Brick(const char* _texture, const char* _hitSound, const char* _breakSound = "", int _hp = -1, int _breakScore = -1) :
-		texture(_texture), 
-		hp(_hp), 
-		breakScore(_breakScore), 
-		hitSound(_hitSound), 
-		breakSound(_breakSound) {}
+	Brick(sf::Vector2f _position, sf::Vector2f _size, const char* _texture, const char* _hitSound, const char* _breakSound = "", int _hp = -1, int _breakScore = -1);
 
 	~Brick();
 
+	static int const BRICK_WIDTH	= 25;
+	static int const BRICK_HEIGHT	= 15;
 };

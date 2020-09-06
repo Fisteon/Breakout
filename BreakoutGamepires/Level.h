@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <map>
 #include <vector>
 
@@ -13,7 +14,7 @@ public:
 	Level();
 
 	Level(int _rowCount, int _columnCount, int _rowSpacing, int _columnSpacing, const char* _backgroundTexture,
-		std::map<const char*, Brick> _bricks) :
+		std::map<char, Brick> _bricks) :
 		rowCount(_rowCount),
 		columnCount(_columnCount),
 		rowSpacing(_rowSpacing),
@@ -26,8 +27,9 @@ public:
 	int columnCount;
 	int rowSpacing;
 	int columnSpacing;
-	const char* backgroundTexture;
-	std::map<const char*, Brick> brickTypes;
+	//const char* backgroundTexture;
+	std::string backgroundTexture;
+	std::map<char, Brick> brickTypes;
 	std::vector<std::string> levelLayout;
 };
 

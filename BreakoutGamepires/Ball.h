@@ -1,21 +1,15 @@
 #pragma once
 #include <tuple>
 #include "Utility.h"
-#include "SFML\Main.hpp"
+#include <SFML\Main.hpp>
+#include <SFML\Graphics.hpp>
 
 
-class Ball
+class Ball : public sf::CircleShape
 {
 public:
-	float getVelocity() { return velocity; }
-	void setVelocity(float v) {	velocity = v; }
-
-	float getSize() { return size; }
-	void setSize(float s) {	size = s; }
-
-	sf::Vector2f direction;
-
-private:
-	float velocity;
-	float size;
+	Ball();
+	Ball(float radius, sf::Vector2f position, sf::Vector2f velocity);
+	void Move();
+	sf::Vector2f velocity;
 };

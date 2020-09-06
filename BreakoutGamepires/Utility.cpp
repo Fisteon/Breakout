@@ -9,3 +9,7 @@ std::string removeSpaces(std::string str) {
 	boost::replace_all(str, " ", "");
 	return str;
 }
+
+bool fileExists(std::string filename) {
+	return boost::filesystem::exists(filename);
+}

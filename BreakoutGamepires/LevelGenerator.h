@@ -12,6 +12,7 @@ class LevelGenerator {
 		LevelGenerator();
 		Level parseLevelInfo(int levelNumber = -1);
 		std::vector<std::string> parseLevelLayout(std::string x);
+		std::string getXMLStringAttribute(std::string attribute, XMLElement* element);
 
 		const std::string LEVEL = "Level";
 		const std::string BRICK_TYPES = "BrickTypes";

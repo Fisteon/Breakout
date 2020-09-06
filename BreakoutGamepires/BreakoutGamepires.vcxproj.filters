@@ -36,6 +36,9 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -64,5 +67,10 @@
     <Xml Include="LevelData_1.xml">
       <Filter>Resource Files</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

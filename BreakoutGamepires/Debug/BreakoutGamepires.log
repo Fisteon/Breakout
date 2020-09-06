@@ -1,3 +1,4 @@
 ﻿  GameManager.cpp
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(53): warning C4018: '<': signed/unsigned mismatch
   BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.exe
   BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.pdb (Partial PDB)
