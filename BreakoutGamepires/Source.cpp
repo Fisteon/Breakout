@@ -22,7 +22,7 @@ int main()
 		}
 
 		window.clear();
-		BreakoutGame.Update(deltaTime.asSeconds());
+		BreakoutGame.update(deltaTime.asSeconds());
 		window.display();
 		
 		deltaTime = gameClock.restart();
