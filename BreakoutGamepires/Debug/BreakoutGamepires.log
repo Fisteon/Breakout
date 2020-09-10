@@ -1,3 +1,8 @@
-﻿  QuadTree.cpp
+﻿  GameManager.cpp
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(41): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(42): warning C4018: '<': signed/unsigned mismatch
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(179): warning C4018: '<': signed/unsigned mismatch
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(182): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(191): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.exe
   BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.pdb (Partial PDB)

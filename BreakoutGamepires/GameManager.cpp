@@ -3,8 +3,7 @@
 #include "LevelGenerator.h"
 #include "QuadTree.h"
 
-bool keyReleased = true;
-int brickdelete = 59;
+Brick player = Brick(sf::Vector2f(245.f, 575.f), sf::Vector2f(100.f, 15.f), "", "");
 
 GameManager::GameManager(sf::RenderWindow* _window) {
 	window = _window;
@@ -12,10 +11,16 @@ GameManager::GameManager(sf::RenderWindow* _window) {
 	texture.loadFromFile("textures.png");
 
 	// Ball setup
-	ball = Ball(10.f, sf::Vector2f(250.f, 300.f), sf::Vector2f(15.f, -55.f));
+	ball = Ball(7.f, sf::Vector2f(50.f, 500.f), sf::Vector2f(500.f, 500.f));
 	ball.setTexture(&texture);
-	ball.setTextureRect(sf::IntRect(25, 0, 50, 50));
-	ball.setOrigin(10.f, 10.f);
+	ball.setTextureRect(sf::IntRect(75, 0, 50, 50));
+	ball.setOrigin(7.f, 7.f);
+
+	player.velocity = 50.f;
+	/*
+	player.setSize(sf::Vector2f(100, 15));
+	player.setPosition(sf::Vector2f(245.f, 575.f));
+	player.setFillColor(sf::Color(255, 255, 255));*/
 
 	// Background setup
 	background.setFillColor(sf::Color(0, 0, 0, 0));
@@ -41,6 +46,16 @@ GameManager::GameManager(sf::RenderWindow* _window) {
 	return;
 }
 
+void GameManager::movePlayer(int _direction) {
+	BallDirection direction = BallDirection(_direction);
+	if (direction == LEFT) {
+		player.move(sf::Vector2f(player.velocity, 0.f));
+	}
+	else {
+		player.move(sf::Vector2f(player.velocity, 0.f));
+	}
+}
+
 void GameManager::drawQTshapes(QuadTree* qt) {
 	window->draw(qt->bounds);
 	if (qt->NW != nullptr) drawQTshapes(qt->NW);
@@ -50,38 +65,112 @@ void GameManager::drawQTshapes(QuadTree* qt) {
 }
 
 void GameManager::update(float deltaTime) {
-	//window->draw(background);	
+	window->draw(background);	
+	window->draw(player);
 
 	for (Brick b : bricks) {
 		if (b.hp != 0) {
 			window->draw(b);
 		}
 	}
-	drawQTshapes(&qt);
-	for (Brick* b : qt.collisionBricks(ball)) {
-		std::cout << b->hp;
-	}
-	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && keyReleased) {
-		// delete brick X;
-		keyReleased = false;
-		deleteBrick(brickdelete--);
-		std::cout << "Pressed: A";
-	}
-	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-		keyReleased = true;
-	}
+	//drawQTshapes(&qt);
+	ballBrickCollision(qt.collisionBricks(ball));
 
 	ball.rotate(90 * deltaTime);
-	ball.move(ball.velocity * deltaTime);
+	ball.Move(deltaTime, WINDOW_PLAY_AREA_WIDTH, WINDOW_HEIGHT);
+	player.setPosition(sf::Vector2f((ball.getPosition().x - player.getSize().x / 2), player.getPosition().y));
 	window->draw(ball);
 
 	return;
 }
 
-void GameManager::deleteBrick(int i) {
-	bricks[i].hp = 0;
-	qt.deleteBrick(&bricks[i]);
+void GameManager::ballBrickCollision(std::unordered_set<Brick*> collisionBricks) {
+	if (checkCollision(&player, &ball)) {
+		//std::cout << "Bounce off of player\n";
+		ballBounce();
+		return;
+	}
+
+	for (Brick* brick : collisionBricks) {
+		if (brick->hp == 0) continue;
+
+		if (checkCollision(brick, &ball)) {
+			ballBounce();
+			if (brick->hp == -1) {
+				return;
+			}
+			if (--brick->hp == 0) {
+				qt.deleteBrick(brick);
+				return;
+			}
+			sf::IntRect brickTextureRect = brick->getTextureRect();
+			brick->setTextureRect(sf::IntRect(
+				brickTextureRect.left + Brick::BRICK_WIDTH,
+				brickTextureRect.top,
+				brickTextureRect.width,
+				brickTextureRect.height
+			));
+		}
+	}
+}
+
+void GameManager::ballBounce() {
+	BallDirection direction = BallDirection(getDirection(ball.reposition));
+	if (direction == LEFT || direction == RIGHT) {
+		ball.velocity.x = -ball.velocity.x;
+		if (direction == LEFT) {
+			ball.move(sf::Vector2f(ball.getRadius() - std::abs(ball.reposition.x), 0.f));
+		}
+		else {
+			ball.move(sf::Vector2f(-(ball.getRadius() - std::abs(ball.reposition.x)), 0.f));
+		}
+	}
+	else {
+		ball.velocity.y = -ball.velocity.y;
+		if (direction == DOWN) {
+			ball.move(sf::Vector2f(0.f, ball.getRadius() - std::abs(ball.reposition.y)));
+		}
+		else {
+			ball.move(sf::Vector2f(0.f, -(ball.getRadius() - std::abs(ball.reposition.y))));
+		}
+	}
+}
+
+bool GameManager::checkCollision(RectangularObject* rect, Ball* ball) {
+	float ballRadius = ball->getRadius();
+	sf::Vector2f ballCenter = ball->getPosition();
+
+	sf::Vector2f rectSize = rect->getSize();
+	sf::Vector2f rectCenter = rect->getObjectCentre();
+
+	sf::Vector2f circleCenterToBrick = (rectCenter + clamp(ballCenter - rectCenter, rectSize / 2.f)) - ballCenter;
+	
+	if (magnitude(circleCenterToBrick) <= ballRadius) {
+		ball->reposition = circleCenterToBrick;
+		return true;
+	}
+	return false;
+}
+
+// Direction order -> LEFT RIGHT UP DOWN
+int GameManager::getDirection(sf::Vector2f vector) {
+	sf::Vector2f directions[] = {
+		sf::Vector2f(-1.f, 0.f),
+		sf::Vector2f(1.f,  0.f),
+		sf::Vector2f(0.f,  1.f),
+		sf::Vector2f(0.f, -1.f)
+	};
+
+	float max = 0.0f;
+	int bestMatch = -1;
+	for (int i = 0; i < 4; i++) {
+		float dotProd = dotProduct(vector, directions[i]);
+		if (dotProd > max) {
+			max = dotProd;
+			bestMatch = i;
+		}
+	}
+	return bestMatch;
 }
 
 void GameManager::initialLevelSetup(int levelNumber) {
@@ -94,14 +183,13 @@ void GameManager::initialLevelSetup(int levelNumber) {
 			bricks.back().setTexture(&texture);
 			bricks.back().setTextureRect(sf::IntRect(
 				0, 
-				texturePositions.at(row[i]) * 15, 
+				texturePositions.at(row[i]) * Brick::BRICK_HEIGHT,
 				Brick::BRICK_WIDTH, 
 				Brick::BRICK_HEIGHT));
 			bricks.back().setPosition(sf::Vector2f(
-				10.f + i*(Brick::BRICK_WIDTH + levels[levelNumber].columnSpacing),
-				10.f + rowCount*(Brick::BRICK_HEIGHT + levels[levelNumber].rowSpacing)));
+				WINDOW_LEFT_OFFSET + i*(Brick::BRICK_WIDTH + levels[levelNumber].columnSpacing),
+				WINDOW_TOP_OFFSET  + rowCount*(Brick::BRICK_HEIGHT + levels[levelNumber].rowSpacing)));
 			window->draw(bricks.back());
-			std::cout << bricks.back().getGlobalBounds().top << " " << bricks.back().getGlobalBounds().left << " " << bricks.back().getGlobalBounds().width << " " << bricks.back().getGlobalBounds().height << "\n";
 		}
 		rowCount++;
 	}

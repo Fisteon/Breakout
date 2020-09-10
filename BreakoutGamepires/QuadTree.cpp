@@ -104,7 +104,6 @@ std::unordered_set<Brick*> QuadTree::collisionBricks(Ball ball) {
 }
 
 
-
 std::unordered_set<Brick*> QuadTree::merge() {
 	if (this->NW != nullptr) {
 		std::unordered_set<Brick*> childBricks;

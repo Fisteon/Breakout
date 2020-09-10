@@ -12,6 +12,7 @@ public:
 	Ball(float radius, sf::Vector2f position, sf::Vector2f velocity);
 
 
-	void Move();
+	void Move(float deltaTime, int windowWidth, int windowHeight);
 	sf::Vector2f velocity;
+	sf::Vector2f reposition;
 };

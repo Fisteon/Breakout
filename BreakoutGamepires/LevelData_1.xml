@@ -1,4 +1,4 @@
-<Level RowCount="30" ColumnCount="20" RowSpacing="1" ColumnSpacing="1" BackgroundTexture="Textures/Boards/Board_01.dds">
+<Level RowCount="3" ColumnCount="20" RowSpacing="1" ColumnSpacing="1" BackgroundTexture="Textures/Boards/Board_01.dds">
   <BrickTypes>
     <!-- Soft Brick -->
     <BrickType Id="S" Texture="Textures/Bricks/Soft.dds" HitPoints="1" HitSound="Sounds/Hit_01.wav" BreakSound="Sounds/Break_01.wav" BreakScore="50" />
@@ -12,5 +12,23 @@
   <Bricks>HHHHHHHHHHHHHHHHHHHH
 MMIIMMMMMMMMMMMMIIMM
 SSSSSSSSSSSSSSSSSSSS
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
+S__________________S
   </Bricks>
 </Level>

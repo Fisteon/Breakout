@@ -13,3 +13,4 @@ std::string removeSpaces(std::string str) {
 bool fileExists(std::string filename) {
 	return boost::filesystem::exists(filename);
 }
+

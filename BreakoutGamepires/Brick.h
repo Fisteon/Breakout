@@ -1,10 +1,11 @@
 #pragma once
 
 #include <string>
+#include "RectangularObject.h"
 #include <SFML\Main.hpp>
 #include <SFML\Graphics.hpp>
 
-class Brick : public sf::RectangleShape{
+class Brick : public RectangularObject {
 public:
 	/*const char**/ std::string texture;
 	int hp;

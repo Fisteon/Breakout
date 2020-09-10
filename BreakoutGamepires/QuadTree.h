@@ -36,7 +36,7 @@ public:
 	int		totalElementsContained;
 
 	static int const maxLevel = 5;
-	static int const maxCapacity = 8;
+	static int const maxCapacity = 7;
 
 	void addBrick(Brick* b);
 	sf::RectangleShape bounds;
