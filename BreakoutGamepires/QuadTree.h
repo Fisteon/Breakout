@@ -10,22 +10,34 @@ class QuadTree {
 public:
 	QuadTree();
 	~QuadTree();
-	QuadTree(float _left, float _top, float _width, float _height, int _level, QuadTree* _parent = nullptr);
-	bool contains(Brick* b);
-	bool contains(Ball b);
-	bool contains(float o_left, float o_top, float o_width, float o_height); // Object_left,top,width,height
-	void deleteBrick(Brick* brickToDelete);
+	QuadTree(
+		float _left, 
+		float _top, 
+		float _width, 
+		float _height, 
+		int _level, 
+		QuadTree* _parent = nullptr
+	);
 
-	std::unordered_set<Brick*> merge();
+	void addBrick(Brick* b);
+	void deleteBrick(Brick* brickToDelete);
 	std::unordered_set<Brick*> collisionBricks(Ball ball);
 
-	std::unordered_set<Brick*> bricks;
-	
 	QuadTree*	parent;
 	QuadTree*	NW;
 	QuadTree*	NE;
 	QuadTree*	SW;
 	QuadTree*	SE;
+
+	sf::RectangleShape bounds;
+	
+private:
+	bool contains(Brick* b);
+	bool contains(Ball b);
+	bool contains(float o_left, float o_top, float o_width, float o_height); // Object_left,top,width,height
+	std::unordered_set<Brick*> merge();
+
+	std::unordered_set<Brick*> bricks;
 
 	float	left;
 	float	top;
@@ -36,8 +48,5 @@ public:
 	int		totalElementsContained;
 
 	static int const maxLevel = 5;
-	static int const maxCapacity = 7;
-
-	void addBrick(Brick* b);
-	sf::RectangleShape bounds;
+	static int const maxCapacity = 8;
 };

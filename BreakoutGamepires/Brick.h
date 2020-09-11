@@ -1,23 +1,34 @@
 #pragma once
 
 #include <string>
-#include "RectangularObject.h"
 #include <SFML\Main.hpp>
 #include <SFML\Graphics.hpp>
 
-class Brick : public RectangularObject {
+class Brick : public sf::RectangleShape {
 public:
-	/*const char**/ std::string texture;
+	int textureX;
+	int textureY;
+	int texturesLeft;
 	int hp;
 	int breakScore;
-	/*const char**/ std::string hitSound;
-	/*const char**/ std::string breakSound;
+	
+	std::string hitSound;
+	std::string breakSound;
 
 	Brick();
-	Brick(sf::Vector2f _position, sf::Vector2f _size, const char* _texture, const char* _hitSound, const char* _breakSound = "", int _hp = -1, int _breakScore = -1);
+	Brick(
+		sf::Vector2f _position, 
+		sf::Vector2f _size, 
+		int _textureX, 
+		int _textureY,
+		const char* _hitSound, 
+		const char* _breakSound = "", 
+		int _hp = -1, 
+		int _breakScore = -1
+	);
 
 	~Brick();
 
-	static int const BRICK_WIDTH	= 25;
-	static int const BRICK_HEIGHT	= 15;
+	static int const BRICK_WIDTH	= 50;
+	static int const BRICK_HEIGHT	= 30;
 };

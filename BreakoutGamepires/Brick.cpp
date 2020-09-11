@@ -5,8 +5,9 @@ Brick::Brick() {
 	this->breakScore = -1;
 }
 
-Brick::Brick(sf::Vector2f _position, sf::Vector2f _size, const char* _texture, const char* _hitSound, const char* _breakSound, int _hp, int _breakScore):
-	texture(_texture),
+Brick::Brick(sf::Vector2f _position, sf::Vector2f _size, int _textureX, int _textureY, const char* _hitSound, const char* _breakSound, int _hp, int _breakScore):
+	textureX(_textureX),
+	textureY(_textureY),
 	hp(_hp),
 	breakScore(_breakScore),
 	hitSound(_hitSound),

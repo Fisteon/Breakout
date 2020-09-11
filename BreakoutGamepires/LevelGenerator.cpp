@@ -25,6 +25,8 @@ Level LevelGenerator::parseLevelInfo(int levelNumber) {
 	docRoot->ToElement()->QueryIntAttribute("ColumnSpacing", &level.columnSpacing);
 	docRoot->ToElement()->QueryStringAttribute("BackgroundTexture", &temp);
 	level.backgroundTexture = temp;
+	docRoot->ToElement()->QueryStringAttribute("SpriteTexture", &temp);
+	level.spriteTexture = temp;
 
 	XMLElement* bricktypes = docRoot->FirstChildElement("BrickTypes");
 
@@ -33,10 +35,13 @@ Level LevelGenerator::parseLevelInfo(int levelNumber) {
 		const char* brickID;
 		b->QueryStringAttribute("Id", &brickID);
 
-		brick.texture = getXMLStringAttribute("Texture", b);
+		//brick.texture = getXMLStringAttribute("Texture", b);
 		brick.hitSound = getXMLStringAttribute("HitSound", b);
 		brick.breakSound = getXMLStringAttribute("BreakSound", b);
 
+		b->QueryIntAttribute("TextureX", &brick.textureX);
+		b->QueryIntAttribute("TextureY", &brick.textureY);
+		b->QueryIntAttribute("TexturesLeft", &brick.texturesLeft);
 		b->QueryIntAttribute("HitPoints", &brick.hp);
 		b->QueryIntAttribute("BreakScore", &brick.breakScore);
 

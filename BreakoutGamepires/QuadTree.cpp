@@ -5,10 +5,7 @@ QuadTree::QuadTree() {
 }
 
 QuadTree::~QuadTree() {
-	/*delete (this->NW);
-	delete (this->NE);
-	delete (this->SW);
-	delete (this->SE);*/
+
 }
 
 QuadTree::QuadTree(float _left, float _top, float _width, float _height, int _level, QuadTree* _parent) :
@@ -22,9 +19,9 @@ QuadTree::QuadTree(float _left, float _top, float _width, float _height, int _le
 	totalElementsContained = 0;
 	bounds.setPosition(left, top);
 	bounds.setSize(sf::Vector2f(width, height));
-	bounds.setFillColor(sf::Color(0, 0, 0, 0));
+	bounds.setFillColor(sf::Color(sf::Color::Transparent));
 	bounds.setOutlineThickness(-1.f);
-	bounds.setOutlineColor(sf::Color(255, 0, 0));
+	bounds.setOutlineColor(sf::Color(sf::Color::Red));
 }
 
 void QuadTree::addBrick(Brick* newBrick) {
@@ -82,6 +79,8 @@ void QuadTree::deleteBrick(Brick* brickToDelete) {
 	bricks.erase(brickToDelete);
 }
 
+// Recursively searches all nodes for the one containing the ball and
+// returns bricks in that node to check for collision
 std::unordered_set<Brick*> QuadTree::collisionBricks(Ball ball) {
 	std::unordered_set<Brick *> bricksNearBall;
 	if (!this->contains(ball)) return bricksNearBall;
@@ -103,7 +102,8 @@ std::unordered_set<Brick*> QuadTree::collisionBricks(Ball ball) {
 	return bricks;
 }
 
-
+// Removes child nodes from a parent if the combined amount of bricks
+// in all children is less than max brick limit
 std::unordered_set<Brick*> QuadTree::merge() {
 	if (this->NW != nullptr) {
 		std::unordered_set<Brick*> childBricks;
@@ -145,10 +145,12 @@ bool QuadTree::contains(Ball b) {
 
 bool QuadTree::contains(float o_left, float o_top, float o_width, float o_height) {
 	return (
+		// (A + C) * (B + D)
 		((o_left > left && o_left < left + width) ||
 		(o_left + o_width > left && o_left + o_width < left + width)) &&
 		((o_top > top && o_top < top + height) ||
 		(o_top + o_height > top && o_top + o_height < top + height))
+		);
 		/*((o_left > left && o_left < left + width) &&						// A
 		(o_top > top && o_top < top + height)) ||							// B
 		((o_left + o_width > left && o_left + o_width < left + width) &&	// C
@@ -157,6 +159,5 @@ bool QuadTree::contains(float o_left, float o_top, float o_width, float o_height
 		(o_top + o_height > top && o_top + o_height < top + height)) ||		// D
 		((o_left + o_width > left && o_left + o_width < left + width) &&	// C
 		(o_top + o_height > top && o_top + o_height < top + height))		// D		*/
-		);
 }
 

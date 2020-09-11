@@ -19,15 +19,26 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			/*
 			if (event.type == sf::Event::KeyPressed) {
-				if (event.key.code == sf::Keyboard::Left) {
-					BreakoutGame.movePlayer(0);
+				if (BreakoutGame.startGameIfReady()) {
+					break;
 				}
-				else if (event.key.code == sf::Keyboard::Right) {
-					BreakoutGame.movePlayer(1);
+				if (event.key.code == sf::Keyboard::Q) {
+					BreakoutGame.showQuadtree = !BreakoutGame.showQuadtree;
 				}
-			}*/
+				else if (event.key.code == sf::Keyboard::A) {
+					BreakoutGame.autoplay = !BreakoutGame.autoplay;
+				}
+				else if (event.key.code == sf::Keyboard::P) {
+					BreakoutGame.togglePlayState();
+				}
+				else if (event.key.code == sf::Keyboard::N) {
+					BreakoutGame.newGame();
+				}
+				else if (event.key.code == sf::Keyboard::X) {
+					window.close();
+				}
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 			BreakoutGame.movePlayer(0);

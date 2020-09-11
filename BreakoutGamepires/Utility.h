@@ -7,19 +7,21 @@
 #include <SFML/Main.hpp>
 #include <SFML/Graphics.hpp>
 
-
-
 bool isSpaceNewlineOrTab(char c);
+bool fileExists(std::string filename);
 
 std::string removeSpaces(std::string str);
-
-bool fileExists(std::string filename);
 
 template<typename T>
 sf::Vector2<T> clamp(sf::Vector2<T> vectorToClamp, sf::Vector2<T> clampValues) {
 	T x = std::max(-clampValues.x, std::min(clampValues.x, vectorToClamp.x));
 	T y = std::max(-clampValues.y, std::min(clampValues.y, vectorToClamp.y));
 	return sf::Vector2<T>(x, y);
+}
+
+template<typename T>
+T clamp(T a, T min, T max) {
+	return std::max(min, std::min(max, a));
 }
 
 template<typename T>

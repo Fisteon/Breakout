@@ -130,6 +130,7 @@
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="Z:\tinyxml2.cpp" />
   </ItemGroup>
@@ -137,18 +138,29 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="RectangularObject.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelGenerator.h" />
     <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Z:\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="LevelData_1.xml" />
+    <Xml Include="LevelData_2.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="background.png" />
     <Image Include="textures.png" />
+    <Image Include="textures_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="ball_bounce.wav" />
+    <Media Include="ball_miss.wav" />
+    <Media Include="break_sound.wav" />
+    <Media Include="hit_sound.wav" />
+    <Media Include="impenetrable_hit.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

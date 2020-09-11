@@ -42,6 +42,9 @@
     <ClCompile Include="QuadTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -68,7 +71,10 @@
     <ClInclude Include="QuadTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RectangularObject.h">
+    <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -76,10 +82,36 @@
     <Xml Include="LevelData_1.xml">
       <Filter>Resource Files</Filter>
     </Xml>
+    <Xml Include="LevelData_2.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures_l.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="ball_miss.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="break_sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="hit_sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="impenetrable_hit.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="ball_bounce.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
