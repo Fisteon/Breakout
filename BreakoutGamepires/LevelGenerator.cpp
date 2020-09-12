@@ -31,6 +31,8 @@ Level LevelGenerator::parseLevelInfo(int levelNumber) {
 	sounds->QueryStringAttribute("InfiniteHit", &temp); level.soundPaths["InfiniteHit"] = temp;
 	sounds->QueryStringAttribute("BallBounce",	&temp); level.soundPaths["BallBounce"] = temp;
 	sounds->QueryStringAttribute("BallMiss",	&temp); level.soundPaths["BallMiss"] = temp;
+	sounds->QueryStringAttribute("Powerup",		&temp); level.soundPaths["Powerup"] = temp;
+	sounds->QueryStringAttribute("Levelup",		&temp); level.soundPaths["Levelup"] = temp;
 
 	XMLElement* bricktypes = docRoot->FirstChildElement("BrickTypes");
 

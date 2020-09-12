@@ -4,7 +4,9 @@
     BallMiss="Resources/Sounds/ball_miss.wav"
     Hit="Resources/Sounds/hit_sound.wav"
     Break="Resources/Sounds/break_sound.wav"
-    InfiniteHit="Resources/Sounds/impenetrable_hit.wav" />
+    InfiniteHit="Resources/Sounds/impenetrable_hit.wav"
+    Powerup="Resources/Sounds/powerup.wav"
+    Levelup="Resources/Sounds/levelup.wav"/>
   <BrickTypes>
     <!-- Soft Brick -->
     <BrickType Id="S" TextureX="0" TextureY="60" TexturesLeft="0" HitPoints="1" BreakScore="50" />

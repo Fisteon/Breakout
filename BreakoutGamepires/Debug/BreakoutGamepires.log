@@ -1,2 +1,30 @@
-﻿  BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.exe
+﻿  Utility.cpp
+  UI.cpp
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\ui.cpp(12): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\ui.cpp(15): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\ui.cpp(16): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Source.cpp
+  QuadTree.cpp
+  Powerup.cpp
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\powerup.cpp(4): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  LevelGenerator.cpp
+  GameManager.cpp
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(73): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(74): warning C4018: '<': signed/unsigned mismatch
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(100): warning C4018: '<': signed/unsigned mismatch
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(153): warning C4018: '<': signed/unsigned mismatch
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(236): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(310): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(473): warning C4018: '<': signed/unsigned mismatch
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(477): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(486): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Brick.cpp
+  Ball.cpp
+  Generating Code...
+c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\ball.cpp(39): warning C4715: 'Ball::travel': not all control paths return a value
+  Compiling...
+  Level.cpp
+  Generating Code...
+  BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.exe
   BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.pdb (Partial PDB)

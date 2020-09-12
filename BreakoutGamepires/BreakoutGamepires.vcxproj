@@ -149,8 +149,8 @@
     <ClInclude Include="Z:\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="LevelData_1.xml" />
-    <Xml Include="LevelData_2.xml" />
+    <Xml Include="Resources\Levels\LevelData_1.xml" />
+    <Xml Include="Resources\Levels\LevelData_2.xml" />
     <Xml Include="Resources\Levels\LevelData_3.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -85,13 +85,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="LevelData_1.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
-    <Xml Include="LevelData_2.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
     <Xml Include="Resources\Levels\LevelData_3.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\Levels\LevelData_1.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\Levels\LevelData_2.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

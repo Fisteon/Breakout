@@ -63,11 +63,15 @@ class GameManager {
 		sf::SoundBuffer bufferBrickHit;
 		sf::SoundBuffer bufferBrickBreak;
 		sf::SoundBuffer bufferImpenetrableHit;
+		sf::SoundBuffer bufferPowerup;
+		sf::SoundBuffer bufferLevelup;
 		sf::Sound		soundImpenetrableHit;
 		sf::Sound		soundBallFail;
 		sf::Sound		soundBallBounce;
 		sf::Sound		soundBrickHit;
 		sf::Sound		soundBrickBreak;
+		sf::Sound		soundPowerup;
+		sf::Sound		soundLevelup;
 
 		sf::Texture texture;
 		std::vector<Level> levels;

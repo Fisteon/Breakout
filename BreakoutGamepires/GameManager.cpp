@@ -21,11 +21,13 @@ GameManager::GameManager(sf::RenderWindow* _window) {
 	}
 
 	// Sound setup
-	loadSound(&bufferBallFail, &soundBallFail, "BallMiss");
-	loadSound(&bufferBallBounce, &soundBallBounce, "BallBounce");
-	loadSound(&bufferBrickHit, &soundBrickHit, "Hit");
-	loadSound(&bufferBrickBreak, &soundBrickBreak, "Break");
-	loadSound(&bufferImpenetrableHit, &soundImpenetrableHit, "InfiniteHit");
+	loadSound(&bufferBallFail,			&soundBallFail,			"BallMiss");
+	loadSound(&bufferBallBounce,		&soundBallBounce,		"BallBounce");
+	loadSound(&bufferBrickHit,			&soundBrickHit,			"Hit");
+	loadSound(&bufferBrickBreak,		&soundBrickBreak,		"Break");
+	loadSound(&bufferImpenetrableHit,	&soundImpenetrableHit,	"InfiniteHit");
+	loadSound(&bufferPowerup,			&soundPowerup,			"Powerup");
+	loadSound(&bufferLevelup,			&soundLevelup,			"Levelup");
 	
 	// Textures setup
 	texture.loadFromFile(levels[currentLevel].spriteTexture);
@@ -100,10 +102,12 @@ void GameManager::checkLevelCompletion() {
 			return;
 		}
 	}
+	soundLevelup.play();
 	gameState = LEVEL_COMPLETE;
 }
 
 void GameManager::nextLevel() {
+	soundLevelup.play();
 	gameState = LEVEL_COMPLETE;
 }
 
@@ -331,6 +335,7 @@ void GameManager::managePowerups(float deltaTime) {
 		powerup.move(sf::Vector2f(0.f, powerup.fallingSpeed * deltaTime));
 		if (checkCollision(powerup, player)) {
 			activatePowerup(powerup);
+			soundPowerup.play();
 			powerup.active = true;
 		}
 		window->draw(powerup);
