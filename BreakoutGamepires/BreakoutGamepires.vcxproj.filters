@@ -45,6 +45,9 @@
     <ClCompile Include="UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Powerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -77,12 +80,18 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="LevelData_1.xml">
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="LevelData_2.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resources\Levels\LevelData_3.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

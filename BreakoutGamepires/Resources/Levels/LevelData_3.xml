@@ -1,0 +1,33 @@
+<Level RowCount="3" ColumnCount="20" RowSpacing="1" ColumnSpacing="1" BackgroundTexture="Resources/Textures/background.png" SpriteTexture="Resources/Textures/textures_l.png">
+  <SoundPaths
+    BallBounce="Resources/Sounds/ball_bounce.wav"
+    BallMiss="Resources/Sounds/ball_miss.wav"
+    Hit="Resources/Sounds/hit_sound.wav"
+    Break="Resources/Sounds/break_sound.wav"
+    InfiniteHit="Resources/Sounds/impenetrable_hit.wav" />
+  <BrickTypes>
+    <!-- Soft Brick -->
+    <BrickType Id="S" TextureX="0" TextureY="60" TexturesLeft="0" HitPoints="1" BreakScore="50" />
+    <!-- Medium Brick -->
+    <BrickType Id="M" TextureX="0" TextureY="30" TexturesLeft="1" HitPoints="2" BreakScore="100" />
+    <!-- Hard Brick -->
+    <BrickType Id="H" TextureX="0" TextureY="0" TexturesLeft="2" HitPoints="3" BreakScore="150" />
+    <!-- Impenetrable Brick -->
+    <BrickType Id="I" TextureX="0" TextureY="90" HitPoints="Infinite" />
+  </BrickTypes>
+  <Bricks>
+    HHHHSHHHHSHSSHSHSSSH
+    HSSSSHSSSSHSSHSHHSHH
+    HHHHSHSSSSHSSHSHSHSH
+    SSSHSHSSSSHSSHSHSSSH
+    HHHHSHHHHSHHHHSHSSSH
+    IIIIIIIIMMMMIIIIIIII
+    IIIIMMMHHHHHHMMMIIII
+    IIIMMMHHHHHHHHMMMIII
+    IISMMMMHHHHHHMMMMSII
+    ISSSMMMMHHHHMMMMSSSI
+    IISSSSMMMHHMMMSSSSII
+    IIISSSSMMMMMMSSSSIII
+    IIIISSSSSSSSSSSSIIII
+  </Bricks>
+</Level>

@@ -2,6 +2,7 @@
 
 #include <unordered_set>
 #include <vector>
+
 #include <SFML\Graphics.hpp>
 #include "Brick.h"
 #include "Ball.h"
@@ -23,6 +24,8 @@ public:
 	void deleteBrick(Brick* brickToDelete);
 	std::unordered_set<Brick*> collisionBricks(Ball ball);
 
+	bool isSplit() { return this->NW != nullptr; };
+
 	QuadTree*	parent;
 	QuadTree*	NW;
 	QuadTree*	NE;
@@ -32,10 +35,10 @@ public:
 	sf::RectangleShape bounds;
 	
 private:
-	bool contains(Brick* b);
-	bool contains(Ball b);
-	bool contains(float o_left, float o_top, float o_width, float o_height); // Object_left,top,width,height
+	void split();
 	std::unordered_set<Brick*> merge();
+	bool contains(sf::Shape* shape);
+	bool contains(float o_left, float o_top, float o_width, float o_height); // Object_left,top,width,height
 
 	std::unordered_set<Brick*> bricks;
 

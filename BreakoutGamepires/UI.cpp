@@ -2,7 +2,7 @@
 #include "GameManager.h"
 
 UI::UI() {
-	if (!font.loadFromFile("AGENCYB.TTF")) {
+	if (!font.loadFromFile("Resources/Fonts/AGENCYB.TTF")) {
 		return;
 	}
 	background.setFillColor(sf::Color(255, 255, 255, 80));

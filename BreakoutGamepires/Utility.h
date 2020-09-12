@@ -39,3 +39,5 @@ sf::Vector2<T> normalize(sf::Vector2<T> vector) {
 	T mag = magnitude(vector);
 	return sf::Vector2<T>(vector.x / mag, vector.y / mag);
 }
+
+int getVectorDirection(sf::Vector2f vector);

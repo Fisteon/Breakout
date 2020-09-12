@@ -2,17 +2,16 @@
 
 #include <vector>
 #include <unordered_set>
-#include <map>
 #include <iostream>
 
 #include <SFML\Main.hpp>
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
-#include "Level.h"
 #include "Ball.h"
-#include "UI.h"
-
+#include "Level.h"
+#include "Powerup.h"
 #include "QuadTree.h"
+#include "UI.h"
 
 class GameManager {
 	public:
@@ -21,19 +20,30 @@ class GameManager {
 		void initialize();
 		void reset();
 		void newGame();
+		void loadSound(sf::SoundBuffer* buffer, sf::Sound* sound, std::string path);
+		void checkLevelCompletion();
+
+		void nextLevel();
+		void previousLevel();
 
 		bool startGameIfReady();
 		void update(float deltaTime);
 		void drawUI();
 		void drawQTshapes(QuadTree* qt);
 		
-		void movePlayer(int direction);
+		void movePlayer(int direction, float deltaTime);
+
+		void spawnPowerup();
+		void activatePowerup(Powerup powerup);
+		void deactivatePowerup(Powerup::powerupType type);
+		bool isPowerupActive(Powerup::powerupType type);
+		void managePowerups(float deltaTime);
 
 		void ballBrickCollision(std::unordered_set<Brick*> collisionBricks);
 		template <typename T>
-		bool checkCollision(T* brick, Ball* ball);
+		bool checkCollision(T* rect, Ball* ball);
+		bool checkCollision(sf::RectangleShape rectA, sf::RectangleShape rectB);
 		void ballBounce();
-		int  getDirection(sf::Vector2f vector);
 		void adaptBallVelocity();
 		void initialLevelSetup(int levelNumber);
 		void togglePlayState();
@@ -41,9 +51,9 @@ class GameManager {
 		bool showQuadtree = false;
 		bool autoplay = false;
 
-		static const int WINDOW_SIDEBAR_WIDTH = 275;
+		static const int WINDOW_SIDEBAR_WIDTH	= 275;
 		static const int WINDOW_PLAY_AREA_WIDTH = 1040;
-		static const int WINDOW_HEIGHT = 1080;
+		static const int WINDOW_HEIGHT			= 1080;
 
 	private:
 		sf::RenderWindow* window;
@@ -62,6 +72,9 @@ class GameManager {
 		sf::Texture texture;
 		std::vector<Level> levels;
 		std::vector<Brick> bricks;
+		std::vector<Powerup> powerups;
+		std::vector<Powerup> activePowerups;
+		
 		Ball ball;
 		sf::RectangleShape player;
 
@@ -79,26 +92,21 @@ class GameManager {
 
 		const int WINDOW_LEFT_OFFSET		= 10;
 		const int WINDOW_TOP_OFFSET			= 10;
+		const float INITIAL_PLAYER_SPEED	= 750.f;
 		const float INITIAL_BALL_SPEED_X	= 750.f;
 		const float INITIAL_BALL_SPEED_Y	= -750.f;
 
 		enum GameState {
+			LOADING,
 			READY,
 			PLAY,
 			PAUSE,
 			NEWBALL,
+			LEVEL_COMPLETE,
 			WIN,
 			LOSE
 		};
-
 		GameState gameState;
-
-		const std::map<char, int> texturePositions{
-			{ 'H', 0 },
-			{ 'M', 1 },
-			{ 'S', 2 },
-			{ 'I', 3 }
-		};
 
 		const enum BallDirection {
 			LEFT,

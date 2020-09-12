@@ -127,6 +127,7 @@
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="LevelGenerator.cpp" />
+    <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelGenerator.h" />
+    <ClInclude Include="Powerup.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Utility.h" />
@@ -149,6 +151,7 @@
   <ItemGroup>
     <Xml Include="LevelData_1.xml" />
     <Xml Include="LevelData_2.xml" />
+    <Xml Include="Resources\Levels\LevelData_3.xml" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.png" />

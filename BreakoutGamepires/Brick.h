@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+
 #include <SFML\Main.hpp>
 #include <SFML\Graphics.hpp>
 
@@ -11,9 +12,6 @@ public:
 	int texturesLeft;
 	int hp;
 	int breakScore;
-	
-	std::string hitSound;
-	std::string breakSound;
 
 	Brick();
 	Brick(
@@ -21,8 +19,6 @@ public:
 		sf::Vector2f _size, 
 		int _textureX, 
 		int _textureY,
-		const char* _hitSound, 
-		const char* _breakSound = "", 
 		int _hp = -1, 
 		int _breakScore = -1
 	);

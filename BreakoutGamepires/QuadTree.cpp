@@ -11,10 +11,7 @@ QuadTree::~QuadTree() {
 QuadTree::QuadTree(float _left, float _top, float _width, float _height, int _level, QuadTree* _parent) :
 	left(_left), top(_top), width(_width), height(_height), level(_level), parent(_parent) {
 	if (level == 0) {
-		NW = new QuadTree(left, top, width / 2.0f, height / 2.0f, level + 1, this);
-		NE = new QuadTree(left + width / 2.0f, top, width / 2.0f, height / 2.0f, level + 1, this);
-		SW = new QuadTree(left, top + height / 2.0f, width / 2.0f, height / 2.0f, level + 1, this);
-		SE = new QuadTree(left + width / 2.0f, top + height / 2.0f, width / 2.0f, height / 2.0f, level + 1, this);
+		split();
 	}
 	totalElementsContained = 0;
 	bounds.setPosition(left, top);
@@ -28,7 +25,7 @@ void QuadTree::addBrick(Brick* newBrick) {
 	if (!this->contains(newBrick)) return;
 
 	totalElementsContained++;
-	if (NW != nullptr) {
+	if (this->isSplit()) {
 		NW->addBrick(newBrick);
 		NE->addBrick(newBrick);
 		SW->addBrick(newBrick);
@@ -38,10 +35,7 @@ void QuadTree::addBrick(Brick* newBrick) {
 	}
 
 	if (bricks.size() >= maxCapacity && level <= maxLevel) {
-		NW = new QuadTree(left, top, width / 2.0f, height / 2.0f, level + 1, this);
-		NE = new QuadTree(left + width / 2.0f, top, width / 2.0f, height / 2.0f, level + 1, this);
-		SW = new QuadTree(left, top + height / 2.0f, width / 2.0f, height / 2.0f, level + 1, this);
-		SE = new QuadTree(left + width / 2.0f, top + height / 2.0f, width / 2.0f, height / 2.0f, level + 1, this);
+		split();
 
 		bricks.insert(newBrick);
 		for (Brick* b : bricks) {
@@ -61,13 +55,13 @@ void QuadTree::deleteBrick(Brick* brickToDelete) {
 	if (!this->contains(brickToDelete)) return;
 
 	totalElementsContained--;
-	if (NW != nullptr && totalElementsContained <= maxCapacity && this->level != 0){
+	if (this->isSplit() && totalElementsContained <= maxCapacity && this->level != 0){
 		bricks = merge();
 		bricks.erase(brickToDelete);
 		return;
 	}
 
-	if (NW != nullptr) {
+	if (this->isSplit()) {
 		NW->deleteBrick(brickToDelete);
 		NE->deleteBrick(brickToDelete);
 		SW->deleteBrick(brickToDelete);
@@ -83,9 +77,9 @@ void QuadTree::deleteBrick(Brick* brickToDelete) {
 // returns bricks in that node to check for collision
 std::unordered_set<Brick*> QuadTree::collisionBricks(Ball ball) {
 	std::unordered_set<Brick *> bricksNearBall;
-	if (!this->contains(ball)) return bricksNearBall;
+	if (!this->contains(&ball)) return bricksNearBall;
 
-	if (NW != nullptr) {
+	if (this->isSplit()) {
 		std::unordered_set<Brick *> temp;
 		temp = NW->collisionBricks(ball);
 		bricksNearBall.insert(temp.begin(), temp.end());
@@ -100,6 +94,14 @@ std::unordered_set<Brick*> QuadTree::collisionBricks(Ball ball) {
 	}
 
 	return bricks;
+}
+
+// Allocates child nodes to a parent
+void QuadTree::split() {
+	NW = new QuadTree(left, top, width / 2.0f, height / 2.0f, level + 1, this);
+	NE = new QuadTree(left + width / 2.0f, top, width / 2.0f, height / 2.0f, level + 1, this);
+	SW = new QuadTree(left, top + height / 2.0f, width / 2.0f, height / 2.0f, level + 1, this);
+	SE = new QuadTree(left + width / 2.0f, top + height / 2.0f, width / 2.0f, height / 2.0f, level + 1, this);
 }
 
 // Removes child nodes from a parent if the combined amount of bricks
@@ -125,24 +127,16 @@ std::unordered_set<Brick*> QuadTree::merge() {
 	return this->bricks;
 }
 
-bool QuadTree::contains(Brick *b) {
+bool QuadTree::contains(sf::Shape* shape) {
 	return contains(
-		b->getGlobalBounds().left,
-		b->getGlobalBounds().top,
-		b->getGlobalBounds().width,
-		b->getGlobalBounds().height
+		shape->getGlobalBounds().left,
+		shape->getGlobalBounds().top,
+		shape->getGlobalBounds().width,
+		shape->getGlobalBounds().height
 	);
 }
 
-bool QuadTree::contains(Ball b) {
-	return contains(
-		b.getGlobalBounds().left,
-		b.getGlobalBounds().top,
-		b.getGlobalBounds().width,
-		b.getGlobalBounds().height
-	);
-}
-
+// Checks if any corner of a given shape (brick or ball) is within the node's bounds
 bool QuadTree::contains(float o_left, float o_top, float o_width, float o_height) {
 	return (
 		// (A + C) * (B + D)

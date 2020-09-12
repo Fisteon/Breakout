@@ -1,14 +1,2 @@
-﻿  GameManager.cpp
-c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(74): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(75): warning C4018: '<': signed/unsigned mismatch
-c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(173): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(328): warning C4018: '<': signed/unsigned mismatch
-c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(331): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\kisg\documents\visual studio 2015\projects\breakoutgamepires\breakoutgamepires\gamemanager.cpp(340): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  UI.cpp
-  Source.cpp
-  BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.exe
+﻿  BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.exe
   BreakoutGamepires.vcxproj -> C:\Users\Kisg\documents\visual studio 2015\Projects\BreakoutGamepires\Debug\BreakoutGamepires.pdb (Partial PDB)

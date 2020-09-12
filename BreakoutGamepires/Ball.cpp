@@ -10,7 +10,7 @@ Ball::Ball(float _radius, sf::Vector2f _position, sf::Vector2f _velocity) {
 	velocity = _velocity;
 }
 
-bool Ball::Move(float deltaTime, int windowWidth, int windowHeight) {
+bool Ball::travel(float deltaTime, int windowWidth, int windowHeight) {
 	move(velocity * deltaTime);
 	rotate(90 * deltaTime);
 	// Outside left window border

@@ -1,7 +1,5 @@
-#include <iostream>
-
-#include "Utility.h"
 #include "LevelGenerator.h"
+#include "Utility.h"
 
 LevelGenerator::LevelGenerator() {
 
@@ -11,7 +9,7 @@ Level LevelGenerator::parseLevelInfo(int levelNumber) {
 	Level level;
 	XMLDocument levelInfo;
 
-	if (levelInfo.LoadFile(("LevelData_" + std::to_string(levelNumber) + ".xml").c_str()) != XML_SUCCESS) {
+	if (levelInfo.LoadFile(("Resources/Levels/LevelData_" + std::to_string(levelNumber) + ".xml").c_str()) != XML_SUCCESS) {
 		std::cout << "Error loading level data file.";
 		return level;
 	}
@@ -19,31 +17,33 @@ Level LevelGenerator::parseLevelInfo(int levelNumber) {
 
 	const char* temp;
 
-	docRoot->ToElement()->QueryIntAttribute("RowCount", &level.rowCount);
-	docRoot->ToElement()->QueryIntAttribute("ColumnCount", &level.columnCount);
-	docRoot->ToElement()->QueryIntAttribute("RowSpacing", &level.rowSpacing);
-	docRoot->ToElement()->QueryIntAttribute("ColumnSpacing", &level.columnSpacing);
-	docRoot->ToElement()->QueryStringAttribute("BackgroundTexture", &temp);
-	level.backgroundTexture = temp;
-	docRoot->ToElement()->QueryStringAttribute("SpriteTexture", &temp);
-	level.spriteTexture = temp;
+	docRoot->ToElement()->QueryIntAttribute("RowCount",				&level.rowCount);
+	docRoot->ToElement()->QueryIntAttribute("ColumnCount",			&level.columnCount);
+	docRoot->ToElement()->QueryIntAttribute("RowSpacing",			&level.rowSpacing);
+	docRoot->ToElement()->QueryIntAttribute("ColumnSpacing",		&level.columnSpacing);
+	docRoot->ToElement()->QueryStringAttribute("BackgroundTexture", &temp); level.backgroundTexture = temp;
+	docRoot->ToElement()->QueryStringAttribute("SpriteTexture",		&temp);	level.spriteTexture = temp;
+
+	XMLElement* sounds = docRoot->FirstChildElement("SoundPaths");
+
+	sounds->QueryStringAttribute("Hit",			&temp); level.soundPaths["Hit"] = temp;
+	sounds->QueryStringAttribute("Break",		&temp); level.soundPaths["Break"] = temp;
+	sounds->QueryStringAttribute("InfiniteHit", &temp); level.soundPaths["InfiniteHit"] = temp;
+	sounds->QueryStringAttribute("BallBounce",	&temp); level.soundPaths["BallBounce"] = temp;
+	sounds->QueryStringAttribute("BallMiss",	&temp); level.soundPaths["BallMiss"] = temp;
 
 	XMLElement* bricktypes = docRoot->FirstChildElement("BrickTypes");
 
 	for (XMLElement* b = bricktypes->FirstChildElement(); b != NULL; b = b->NextSiblingElement()) {
 		Brick brick;
 		const char* brickID;
-		b->QueryStringAttribute("Id", &brickID);
+		b->QueryStringAttribute("Id",			&brickID);
 
-		//brick.texture = getXMLStringAttribute("Texture", b);
-		brick.hitSound = getXMLStringAttribute("HitSound", b);
-		brick.breakSound = getXMLStringAttribute("BreakSound", b);
-
-		b->QueryIntAttribute("TextureX", &brick.textureX);
-		b->QueryIntAttribute("TextureY", &brick.textureY);
-		b->QueryIntAttribute("TexturesLeft", &brick.texturesLeft);
-		b->QueryIntAttribute("HitPoints", &brick.hp);
-		b->QueryIntAttribute("BreakScore", &brick.breakScore);
+		b->QueryIntAttribute("TextureX",		&brick.textureX);
+		b->QueryIntAttribute("TextureY",		&brick.textureY);
+		b->QueryIntAttribute("TexturesLeft",	&brick.texturesLeft);
+		b->QueryIntAttribute("HitPoints",		&brick.hp);
+		b->QueryIntAttribute("BreakScore",		&brick.breakScore);
 
 		level.brickTypes[brickID[0]] = brick;
 	}

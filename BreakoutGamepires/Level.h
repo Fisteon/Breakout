@@ -31,6 +31,7 @@ public:
 	std::string spriteTexture;
 	std::string backgroundTexture;
 	std::map<char, Brick> brickTypes;
+	std::map<std::string, std::string> soundPaths;
 	std::vector<std::string> levelLayout;
 };
 
